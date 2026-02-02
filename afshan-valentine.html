@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Afshan ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    max-width: 360px;
+    animation: pop 1s ease;
+    z-index: 2;
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+#typing {
+    font-size: 16px;
+    color: #444;
+    min-height: 90px;
+    line-height: 1.5;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin: 15px 0;
+}
+
+button {
+    margin: 15px 10px;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.yes:hover {
+    transform: scale(1.15);
+}
+
+.no {
+    background: #eee;
+    color: #555;
+    position: absolute;
+}
+
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 18px;
+    animation: float 6s linear infinite;
+    color: rgba(255,255,255,0.8);
+    z-index: 1;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>Afshan ❤️</h1>
+
+    <div id="typing"></div>
+
+    <img src="us.jpg" alt="Us">
+
+    <p><strong>Will you be my Valentine? 💌</strong></p>
+
+    <button class="yes" onclick="yesClicked()">Yes 💖</button>
+    <button class="no" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<script>
+// Typing text
+const text = `From the moment you came into my life,
+everything felt brighter and warmer.
+
+You are my favorite person 💕`;
+let i = 0;
+function typeText() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText, 40);
+    }
+}
+typeText();
+
+// Floating hearts
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = Math.random() * 20 + 12 + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}, 250);
+
+// No button escape
+function moveNo() {
+    const btn = document.querySelector(".no");
+    btn.style.left = Math.random() * 80 + "vw";
+    btn.style.top = Math.random() * 80 + "vh";
+}
+
+// Fireworks
+function fireworks() {
+    for (let i = 0; i < 40; i++) {
+        const f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = "50vw";
+        f.style.top = "50vh";
+        f.style.setProperty("--x", Math.random() * 400 - 200 + "px");
+        f.style.setProperty("--y", Math.random() * 400 - 200 + "px");
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1000);
+    }
+}
+
+// Yes clicked
+function yesClicked() {
+    fireworks();
+
+    setTimeout(() => {
+        window.location.href =
+        "https://wa.me/447535473867?text=Yes!%20I%20will%20be%20your%20Valentine%20❤️🥰";
+    }, 1200);
+
+    document.body.innerHTML = `
+        <div style="color:white;text-align:center;">
+            <h1 style="font-size:36px;">Yayyy Afshan! 💕🎆</h1>
+            <p style="font-size:18px;">
+                You just made me the happiest person ❤️<br>
+                Happy Valentine’s Day 💐
+            </p>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
